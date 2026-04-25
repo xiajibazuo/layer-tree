@@ -11,7 +11,7 @@ addLayer("L", {
     requires: new Decimal(1), // Can be a function that takes requirement increases into account
     resource: "层级", // Name of prestige currency
     baseResource: "层级点数", // Name of resource prestige is based on
-    baseAmount() {return player.points}, // Get the current amount of baseResource
+    baseAmount() {return player.L.layerPoint}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 1, // Prestige currency exponent
          gainMult() { // Calculate the multiplier for main currency from bonuses
@@ -26,5 +26,48 @@ addLayer("L", {
     
      row: "side", // Row the layer is in on the tree (0 is the first row)
     layerShown(){return true}
-})
+    
+    buyables: {
 
+    11: {
+        title: "point",
+        display() {
+
+           return "Cost : " + format(new Decimal("10").pow.(new Decimal("10").pow(getBuyableAmount("L", 11)))) + "points"
+        },
+        unlocked() { return true},
+        canAfford() { 
+            return player.points.gte(format(new Decimal("10").pow.(new Decimal("10").pow(getBuyableAmount("L", 11))))) 
+        },
+        buy() { 
+            {
+               player.points = player.points.minus(format(new Decimal("10").pow.(new Decimal("10").pow(getBuyableAmount("L", 11)))))
+            }
+            setBuyableAmount("L", 11, getBuyableAmount("L", 11).add(1))
+            player.L.layerPoint=player.L.layerPoint.add(new Decimal("1"))
+        },
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+})
