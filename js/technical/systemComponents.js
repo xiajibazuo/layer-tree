@@ -106,13 +106,13 @@ var systemComponents = {
 		template: `			
 		<div class="overlayThing" style="padding-bottom:7px; width: 90%; z-index: 1000; position: relative">
 		<span v-if="player.devSpeed && player.devSpeed != 1" class="overlayThing">
-			<br>Dev Speed: {{format(player.devSpeed)}}x<br>
+			<br>全局速率： {{format(player.devSpeed)}}x<br>
 		</span>
 		<span v-if="player.offTime !== undefined"  class="overlayThing">
 			<br>Offline Time: {{formatTime(player.offTime.remain)}}<br>
 		</span>
 		<br>
-		<span v-if="player.points.lt('1e1000')"  class="overlayThing">You have </span>
+		<span v-if="player.points.lt('1e1000')"  class="overlayThing">你有 </span>
 		<h2  class="overlayThing" id="points">{{format(player.points)}}</h2>
 		<span v-if="player.points.lt('1e1e6')"  class="overlayThing"> {{modInfo.pointsName}}</span>
 		<br>
@@ -133,17 +133,17 @@ var systemComponents = {
             Made by {{modInfo.author}}	
         </span>
         <br>
-        The Modding Tree <a v-bind:href="'https://github.com/Acamaeda/The-Modding-Tree/blob/master/changelog.md'" target="_blank" class="link" v-bind:style = "{'font-size': '14px', 'display': 'inline'}" >{{TMT_VERSION.tmtNum}}</a> by Acamaeda and FlamemasterNXF
+        模组树原版： <a v-bind:href="'https://github.com/Acamaeda/The-Modding-Tree/blob/master/changelog.md'" target="_blank" class="link" v-bind:style = "{'font-size': '14px', 'display': 'inline'}" >{{TMT_VERSION.tmtNum}}</a> 作者：Acamaeda and FlamemasterNXF
         <br>
-        The Prestige Tree made by Jacorb and Aarex
+        声望树（作者：Jacorb Acamaeda）
 		<br><br>
 		<div class="link" onclick="showTab('changelog-tab')">Changelog</div><br>
         <span v-if="modInfo.discordLink"><a class="link" v-bind:href="modInfo.discordLink" target="_blank">{{modInfo.discordName}}</a><br></span>
-        <a class="link" href="https://discord.gg/F3xveHV" target="_blank" v-bind:style="modInfo.discordLink ? {'font-size': '16px'} : {}">The Modding Tree Discord</a><br>
+        <a class="link" href="https://discord.gg/F3xveHV" target="_blank" v-bind:style="modInfo.discordLink ? {'font-size': '16px'} : {}">模组树Discord</a><br>
         <a class="link" href="http://discord.gg/wwQfgPa" target="_blank" v-bind:style="{'font-size': '16px'}">Main Prestige Tree server</a><br>
 		<br><br>
-        Time Played: {{ formatTime(player.timePlayed) }}<br><br>
-        <h3>Hotkeys</h3><br>
+        游玩时间： {{ formatTime(player.timePlayed) }}<br><br>
+        <h3>热键：</h3><br>
         <span v-for="key in hotkeys" v-if="player[key.layer].unlocked && tmp[key.layer].hotkeys[key.id].unlocked"><br>{{key.description}}</span></div>
     `
     },
@@ -152,23 +152,23 @@ var systemComponents = {
         template: `
         <table>
             <tr>
-                <td><button class="opt" onclick="save()">Save</button></td>
-                <td><button class="opt" onclick="toggleOpt('autosave')">Autosave: {{ options.autosave?"ON":"OFF" }}</button></td>
-                <td><button class="opt" onclick="hardReset()">HARD RESET</button></td>
+                <td><button class="opt" onclick="save()">保存</button></td>
+                <td><button class="opt" onclick="toggleOpt('autosave')">自动保存: {{ options.autosave?"是":"否" }}</button></td>
+                <td><button class="opt" onclick="hardReset()">硬重置</button></td>
             </tr>
             <tr>
-                <td><button class="opt" onclick="exportSave()">Export to clipboard</button></td>
-                <td><button class="opt" onclick="importSave()">Import</button></td>
-                <td><button class="opt" onclick="toggleOpt('offlineProd')">Offline Prod: {{ options.offlineProd?"ON":"OFF" }}</button></td>
+                <td><button class="opt" onclick="exportSave()">导出存档</button></td>
+                <td><button class="opt" onclick="importSave()">导入存档</button></td>
+                <td><button class="opt" onclick="toggleOpt('offlineProd')">离线进度: {{ options.offlineProd?"开":"关" }}</button></td>
             </tr>
             <tr>
-                <td><button class="opt" onclick="switchTheme()">Theme: {{ getThemeName() }}</button></td>
-                <td><button class="opt" onclick="adjustMSDisp()">Show Milestones: {{ MS_DISPLAYS[MS_SETTINGS.indexOf(options.msDisplay)]}}</button></td>
-                <td><button class="opt" onclick="toggleOpt('hqTree')">High-Quality Tree: {{ options.hqTree?"ON":"OFF" }}</button></td>
+                <td><button class="opt" onclick="switchTheme()">主题: {{ getThemeName() }}</button></td>
+                <td><button class="opt" onclick="adjustMSDisp()">显示里程碑: {{ MS_DISPLAYS[MS_SETTINGS.indexOf(options.msDisplay)]}}</button></td>
+                <td><button class="opt" onclick="toggleOpt('hqTree')">高质量树: {{ options.hqTree?"开":"关" }}</button></td>
             </tr>
             <tr>
-                <td><button class="opt" onclick="toggleOpt('hideChallenges')">Completed Challenges: {{ options.hideChallenges?"HIDDEN":"SHOWN" }}</button></td>
-                <td><button class="opt" onclick="toggleOpt('forceOneTab'); needsCanvasUpdate = true">Single-Tab Mode: {{ options.forceOneTab?"ALWAYS":"AUTO" }}</button></td>
+                <td><button class="opt" onclick="toggleOpt('hideChallenges')">显示完成的挑战: {{ options.hideChallenges?"隐藏":"显示" }}</button></td>
+                <td><button class="opt" onclick="toggleOpt('forceOneTab'); needsCanvasUpdate = true">单标签模式: {{ options.forceOneTab?"永远":"自动" }}</button></td>
 				<td><button class="opt" onclick="toggleOpt('forceTooltips'); needsCanvasUpdate = true">Shift-Click to Toggle Tooltips: {{ options.forceTooltips?"ON":"OFF" }}</button></td>
 				</tr> 
 			<tr>
