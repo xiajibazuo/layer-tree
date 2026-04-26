@@ -25,15 +25,39 @@ addLayer("L", {
     },
     
      row: "side", // Row the layer is in on the tree (0 is the first row)
-    layerShown(){return true}
     
+    autoPrestige(){
+        return hasMilestone('L',1)&&!hasMilestone('L',3);
+    },    
+    
+        milestones: {
+        1: {
+            requirementDescription: "0层级",
+            effectDescription: "自动购买层级，每一个层级都会解锁一个层级，上限为3个层级",
+            done() { return player.L.points.gte(0) }
+        },
+        2: {
+            requirementDescription: "0层级点数",
+            effectDescription: "自动购买层级点数",
+            done() { return player.L.layerPoint.gte(0) }
+        },
+        3: {
+            requirementDescription: "1层级",
+            effectDescription: "第一个里程碑的第一个效果没有作用",
+            done() { return player.L.points.gte(1) }
+        },
+        4: {
+            requirementDescription: "1层级点数",
+            effectDescription: "第二个里程碑没有作用",
+            done() { return player.L.layerPoint.gte(1) }
+        },
     buyables: {
 
     11: {
-        title: "point",
+        title: "点数",
         display() {
 
-           return "Cost : " + format(new Decimal("10").pow.(new Decimal("10").pow(getBuyableAmount("L", 11)))) + "points"
+           return "价格：" + format(new Decimal("10").pow.(new Decimal("10").pow(getBuyableAmount("L", 11)))) + "点数"
         },
         unlocked() { return true},
         canAfford() { 
@@ -42,20 +66,70 @@ addLayer("L", {
         buy() { 
             {
                player.points = player.points.minus(format(new Decimal("10").pow.(new Decimal("10").pow(getBuyableAmount("L", 11)))))
+               player.L.layerPoint=player.L.layerPoint.add(new Decimal("1"))
             }
             setBuyableAmount("L", 11, getBuyableAmount("L", 11).add(1))
-            player.L.layerPoint=player.L.layerPoint.add(new Decimal("1"))
         },
+    12: {
+        title: "层级点数",
+        display() {
+
+           return "价格：达到" + format(new Decimal("2").pow(getBuyableAmount("L", 11))) + "层级点数"
+        },
+        unlocked() { return true},
+        canAfford() { 
+            return player.layerPoint.gte(format(new Decimal("2").pow(getBuyableAmount("L", 11)))) 
+        },
+        buy() { 
+            {
+               player.L.layerPoint=player.L.layerPoint.add(new Decimal("1"))
+            }
+            setBuyableAmount("L", 11, getBuyableAmount("L", 11).add(1))
+        },
+        tabFormat: {
+    "里程碑": {
+        content: [
+        "main-display",
+          "blank",
+        ["prestige-button",function(){return ""}],
+        "blank",
+        "resource-display",
+        "blank",
+        "blank",
+        "milestones",],
+        
+    },
+    "层级点数": {
+        content: [
+        "main-display",
+          "blank",
+        ["prestige-button",function(){return ""}],
+        "blank",
+        "resource-display",
+        "blank",
+        "blank",
+        
+            ["display-text",function(){
+              let s=""
+              s+="你有 "+format(player.L.layerPoint)+" 层级点数<br>"
+              return s
+            }],
+        "blank",
+        "milestones",],
+    },
+}
+              automateStuff(){
+        if(hasMilestone("L",2)&&!hasMilestone('L',4)){
+          if(layers.L.buyables[11].canAfford())setBuyableAmount("L",11,player.points.log(10).log(10).floor().add(1))
+          if(layers.L.buyables[12].canAfford())setBuyableAmount("L",12,player.L.layerPoint.log(2).floor().add(1))
+        }
+        
+        
+         
         
         
         
         
-        
-        
-        
-        
-        
-        
     
     
     
@@ -69,5 +143,6 @@ addLayer("L", {
     
     
     
-    
+    layerShown(){return true}
 })
+
