@@ -169,10 +169,10 @@ var systemComponents = {
             <tr>
                 <td><button class="opt" onclick="toggleOpt('hideChallenges')">显示完成的挑战: {{ options.hideChallenges?"隐藏":"显示" }}</button></td>
                 <td><button class="opt" onclick="toggleOpt('forceOneTab'); needsCanvasUpdate = true">单标签模式: {{ options.forceOneTab?"永远":"自动" }}</button></td>
-				<td><button class="opt" onclick="toggleOpt('forceTooltips'); needsCanvasUpdate = true">Shift-Click to Toggle Tooltips: {{ options.forceTooltips?"ON":"OFF" }}</button></td>
+				<td><button class="opt" onclick="toggleOpt('forceTooltips'); needsCanvasUpdate = true">按住 Shift 键并单击以切换工具提示： {{ options.forceTooltips?"开":"关" }}</button></td>
 				</tr> 
 			<tr>
-                <td><button class="opt" onclick="toggleOpt('hideMilestonePopups')">Show Milestone Popups: {{ formatOption(!options.hideMilestonePopups) }}</button></td>
+                <td><button class="opt" onclick="toggleOpt('hideMilestonePopups')">显示里程碑弹出窗口： {{ formatOption(!options.hideMilestonePopups) }}</button></td>
             </tr>
         </table>`
     },
