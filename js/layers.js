@@ -22,8 +22,45 @@ addLayer("L", {
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
-    },
+    },    
+    autoPrestige(){
+        return hasMilestone('L',1)&&!hasMilestone('L',3);
+    },    
      row: 0, // Row the layer is in on the tree (0 is the first row)
-
+        milestones: {
+        1: {
+            requirementDescription: "0层级",
+            effectDescription: "自动购买层级，每一个层级都会解锁一个层级，上限为3个层级",
+            done() { return player.L.points.gte(0) }
+        },
+        2: {
+            requirementDescription: "0层级点数",
+            effectDescription: "自动购买层级点数",
+            done() { return player.L.layerPoint.gte(0) }
+        },
+        3: {
+            requirementDescription: "1层级",
+            effectDescription: "第一个里程碑的第一个效果没有作用",
+            done() { return player.L.points.gte(1) }
+        },
+        4: {
+            requirementDescription: "1层级点数",
+            effectDescription: "第二个里程碑没有作用",
+            done() { return player.L.layerPoint.gte(1) }
+        },
+        tabFormat: {
+    "里程碑": {
+        content: [
+        "main-display",
+          "blank",
+        ["prestige-button",function(){return ""}],
+        "blank",
+        "resource-display",
+        "blank",
+        "blank",
+        "milestones",],
+        
+    },
+},
     layerShown(){return true}
 })
