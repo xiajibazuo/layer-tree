@@ -22,10 +22,7 @@ addLayer("L", {
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
-    },    
-    autoPrestige(){
-        return hasMilestone('L',1)&&!hasMilestone('L',3);
-    },    
+    },
      row: 0, // Row the layer is in on the tree (0 is the first row)
         milestones: {
         1: {
