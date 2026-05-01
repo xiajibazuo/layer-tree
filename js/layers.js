@@ -28,6 +28,10 @@ addLayer("L", {
     },    
      row: "side", // Row the layer is in on the tree (0 is the first row)
 
+    update(diff){
+    player.L.layerPoint=new Decimal(getBuyableAmount("L",11).add(getBuyableAmount("L",12)))
+    },
+    
         milestones: {
         1: {
             requirementDescription: "0层级",
@@ -64,7 +68,6 @@ addLayer("L", {
         buy() { 
             {
                player.points = player.points.minus(format(new Decimal("10").pow.(new Decimal("10").pow(getBuyableAmount("L", 11)))))
-               player.L.layerPoint=player.L.layerPoint.add(new Decimal("1"))
             }
             setBuyableAmount("L", 11, getBuyableAmount("L", 11).add(1))
         },
@@ -80,7 +83,6 @@ addLayer("L", {
         },
         buy() { 
             {
-               player.L.layerPoint=player.L.layerPoint.add(new Decimal("1"))
             }
             setBuyableAmount("L", 11, getBuyableAmount("L", 11).add(1))
         },
@@ -106,7 +108,6 @@ addLayer("L", {
         "resource-display",
         "blank",
         "blank",
-        
             ["display-text",function(){
               let s=""
               s+="你有 "+format(player.L.layerPoint)+" 层级点数<br>"
