@@ -26,7 +26,7 @@ addLayer("L", {
     autoPrestige(){
         return hasMilestone('L',1)&&!hasMilestone('L',3);
     },    
-     row: "side", // Row the layer is in on the tree (0 is the first row)
+     row: 0, // Row the layer is in on the tree (0 is the first row)
 
     update(diff){
     player.L.layerPoint=new Decimal(getBuyableAmount("L",11).add(getBuyableAmount("L",12)))
