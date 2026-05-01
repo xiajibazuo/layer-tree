@@ -7,7 +7,7 @@ addLayer("L", {
 		points: new Decimal(0),
 		layerPoint: new Decimal(0)
     }},
-    color: "#7FAFFF",
+    color: "#0000FF",
     requires: new Decimal(1), // Can be a function that takes requirement increases into account
     resource: "层级", // Name of prestige currency
     baseResource: "层级点数", // Name of resource prestige is based on
