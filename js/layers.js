@@ -25,10 +25,7 @@ addLayer("L", {
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
-    },    
-    autoPrestige(){
-        return hasMilestone('L',1)&&!hasMilestone('L',3);
-    },    
+    },
      row: 0, // Row the layer is in on the tree (0 is the first row)
 
     update(diff){
@@ -123,11 +120,5 @@ addLayer("L", {
         "buyables",],
     },
 },
-              automateStuff(){
-        if(hasMilestone("L",2)&&!hasMilestone('L',4)){
-          if(layers.L.buyables[11].canAfford())setBuyableAmount("L",11,player.points.log(10).log(10).floor().add(1))
-          if(layers.L.buyables[12].canAfford())setBuyableAmount("L",12,player.L.layerPoint.log(2).floor().add(1))
-        },
-    },
     layerShown(){return true}
 })
