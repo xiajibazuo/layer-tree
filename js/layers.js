@@ -41,12 +41,12 @@ addLayer("L", {
          3: {
              requirementDescription: "1层级",
              effectDescription: "第一个里程碑的第一个效果没有作用",
-             done() { return false}
+             done() { return player.L.points.gte(1)}
         },
          4: {
              requirementDescription: "1层级点数",
              effectDescription: "第二个里程碑没有作用",
-             done() { return false}
+             done() { return player.L.layerPoint.gte(1)}
         },
     },
         tabFormat: {
@@ -58,7 +58,8 @@ addLayer("L", {
         "blank",
         "resource-display",
         "blank",
-        "blank",],
+        "blank",
+        "milestones",],
         
     },
 },
