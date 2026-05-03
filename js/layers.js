@@ -48,6 +48,7 @@ addLayer("L", {
              effectDescription: "第二个里程碑没有作用",
              done() { return false}
         },
+    },
         tabFormat: {
         "里程碑": {
         content: [
