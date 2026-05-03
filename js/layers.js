@@ -85,8 +85,6 @@ addLayer("L", {
             return player.layerPoint.gte(format(new Decimal("2").pow(getBuyableAmount("L", 11)))) 
         },
         buy() { 
-            {
-            }
             setBuyableAmount("L", 11, getBuyableAmount("L", 11).add(1))
         },
     },
