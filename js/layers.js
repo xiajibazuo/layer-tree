@@ -31,12 +31,12 @@ addLayer("L", {
          1: {
              requirementDescription: "0层级",
              effectDescription: "自动购买层级，每一个层级都会解锁一个层级，上限为3个层级",
-             done() { return player.L.points.gte(0) }
+             done() { return true }
         },
          2: {
              requirementDescription: "0层级点数",
              effectDescription: "自动购买层级点数",
-             done() { return player.L.layerPoint.gte(0) }
+             done() { return true }
         },
          3: {
              requirementDescription: "1层级",
