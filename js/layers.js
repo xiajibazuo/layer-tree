@@ -13,26 +13,26 @@ addLayer("L", {
     baseResource: "层级点数", // Name of resource prestige is based on
     baseAmount() {return player.L.layerPoint}, // Get the current amount of baseResource
     type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    base(){
+    return new Decimal("2")
+    }
     exponent: 1, // Prestige currency exponent
-         gainMult() { // Calculate the multiplier for main currency from bonuses
+    gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-        
-
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },    
     autoPrestige(){
-        return hasMilestone('L',1)&&!hasMilestone('L',3);
+        return hasMilestone('L',1)&&!hasMilestone('L',3)
     },    
      row: 0, // Row the layer is in on the tree (0 is the first row)
 
     update(diff){
-    player.L.layerPoint=new Decimal(getBuyableAmount("L",11).add(getBuyableAmount("L",12)))
+    player.L.layerPoint=getBuyableAmount("L",11).add(getBuyableAmount("L",12))
     if player.L.points.gte(3) player.L.points = new Decimal("3")
     },
-    
         milestones: {
         1: {
             requirementDescription: "0层级",
@@ -91,11 +91,11 @@ addLayer("L", {
         },
     },
 },
-        tabFormat: {
+    tabFormat: {
     "里程碑": {
         content: [
         "main-display",
-          "blank",
+        "blank",
         ["prestige-button",function(){return ""}],
         "blank",
         "resource-display",
@@ -107,17 +107,11 @@ addLayer("L", {
     "层级点数": {
         content: [
         "main-display",
-          "blank",
+        "blank",
         ["prestige-button",function(){return ""}],
         "blank",
         "resource-display",
         "blank",
-        "blank",
-            ["display-text",function(){
-              let s=""
-              s+="你有 "+format(player.L.layerPoint)+" 层级点数<br>"
-              return s
-            }],
         "blank",
         "buyables",],
     },
