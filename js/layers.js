@@ -32,7 +32,8 @@ addLayer("L", {
      row: 0, // Row the layer is in on the tree (0 is the first row)
 
     update(diff){
-    player.L.layerPoint=new Decimal(getBuyableAmount("L",11).add(getBuyableAmount("L",12)))
+    player.L.layerPoint=getBuyableAmount("L",11).add(getBuyableAmount("L",12))
+
     if (player.L.points.gte(3)) player.L.points = new Decimal("3")
     },
     
