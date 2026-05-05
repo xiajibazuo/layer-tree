@@ -4,8 +4,8 @@ addLayer("L", {
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
-		points: new Decimal(0),
-		layerPoint: new Decimal(0)
+                points: new Decimal(0),
+                layerPoint: new Decimal(0)
     }},
     color: "#7FAFFF",
     requires: new Decimal(1), // Can be a function that takes requirement increases into account
@@ -19,7 +19,7 @@ addLayer("L", {
     exponent: 1, // Prestige currency exponent
          gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-        
+
 
         return mult
     },
@@ -36,7 +36,7 @@ addLayer("L", {
 
     if (player.L.points.gte(3)) player.L.points = new Decimal("3")
     },
-    
+
         milestones: {
         1: {
             requirementDescription: "0层级",
@@ -106,7 +106,7 @@ addLayer("L", {
         "blank",
         "blank",
         "milestones",],
-        
+
     },
     "层级点数": {
         content: [
