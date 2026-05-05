@@ -12,7 +12,7 @@ addLayer("L", {
     resource: "层级", // Name of prestige currency
     baseResource: "层级点数", // Name of resource prestige is based on
     baseAmount() {return player.L.layerPoint}, // Get the current amount of baseResource
-    type: "static", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    type: "static", // normal: cost to* gain currency depends on amount gained. static: cost depends on how much you already have
     base(){
     return new Decimal(2)
     },
@@ -73,7 +73,7 @@ addLayer("L", {
         },
         buy() { 
             {
-               player.points = player.points.minus(new Decimal("10").pow.(new Decimal("10").pow(getBuyableAmount("L", 11))))
+               player.points = player.points.sub(new Decimal("10").pow(new Decimal("10").pow(getBuyableAmount("L", 11))))
             },
             setBuyableAmount("L", 11, getBuyableAmount("L", 11).add(1))
         },
