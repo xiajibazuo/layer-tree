@@ -119,11 +119,5 @@ addLayer("L", {
         "buyables",],
     },
 },
-              automateStuff(){
-        if(hasMilestone("L",2)&&!hasMilestone('L',4)){
-          if(layers.L.buyables[11].canAfford())setBuyableAmount("L",11,player.points.log(10).log(10).floor().add(1))
-          if(layers.L.buyables[12].canAfford())setBuyableAmount("L",12,player.L.layerPoint.log(2).floor().add(1))
-        },
-    },
     layerShown(){return true}
 })
